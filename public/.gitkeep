@@ -1,0 +1,12 @@
+# Public Assets Folder
+
+This folder contains static assets that are served directly.
+
+## Files needed:
+- og-preview.png (1200x630px) - For WhatsApp/social media link previews
+- rationalbloks-icon.svg - App favicon
+
+## Image specifications:
+- og-preview.png: 1200px × 630px (Open Graph standard)
+- File format: PNG or JPEG
+- Max size: < 1MB for fast loading

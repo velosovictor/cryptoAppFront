@@ -1,0 +1,9 @@
+# My App
+# https://example.com
+
+User-agent: *
+Allow: /
+
+# Block admin/api paths from indexing
+Disallow: /admin/
+Disallow: /api/

@@ -1,0 +1,9 @@
+# Force LF line endings for .env files (prevents Windows CRLF issues)
+*.env text eol=lf
+.env.* text eol=lf
+
+# Shell scripts
+*.sh text eol=lf
+
+# Python files
+*.py text eol=lf
