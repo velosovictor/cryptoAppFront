@@ -38,7 +38,15 @@ export { getApi };
 // Single instance for all authentication operations.
 // Also used by frontblok-crud for authenticated API requests.
 
-const API_URL = import.meta.env.VITE_DATABASE_API_URL || 'http://localhost:8000';
+// In production, VITE_DATABASE_API_URL is injected as a Docker build arg.
+// The localhost fallback is ONLY for local development.
+const API_URL = import.meta.env.VITE_DATABASE_API_URL || (
+  import.meta.env.DEV ? 'http://localhost:8000' : ''
+);
+
+if (!API_URL && import.meta.env.PROD) {
+  console.error('[RationalBloks] VITE_DATABASE_API_URL not set — API calls will fail. This is a build configuration issue.');
+}
 
 export const authApi = createAuthApi(API_URL);
 
