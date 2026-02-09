@@ -36,11 +36,21 @@ export { getApi };
 // ============================================================================
 // AUTH API SINGLETON
 // ============================================================================
-// createApiUrl() handles env var resolution + dev fallback automatically.
-// In production, VITE_DATABASE_API_URL is injected via Docker --build-arg.
-// This logic lives in the package so it stays correct across npm updates.
+// Resolve API URL directly from import.meta.env — this runs in the APP's
+// Vite build where VITE_DATABASE_API_URL is correctly injected via Docker
+// build-args. Do NOT rely on the library's createApiUrl() because Vite
+// statically replaces import.meta.env.* during library builds, baking in
+// empty values. The env resolution MUST happen HERE in the consuming app.
 
-export const authApi = createAuthApi(createApiUrl());
+const datablokApiUrl = import.meta.env.VITE_DATABASE_API_URL 
+  || import.meta.env.VITE_API_URL 
+  || (import.meta.env.DEV ? 'http://localhost:8000' : '');
+
+if (!datablokApiUrl && !import.meta.env.DEV) {
+  console.error('[RationalBloks] VITE_DATABASE_API_URL is not set. API calls will fail.');
+}
+
+export const authApi = createAuthApi(datablokApiUrl);
 
 // Initialize frontblok-crud with authApi for authenticated requests
 initApi(authApi);
