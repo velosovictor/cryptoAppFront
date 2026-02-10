@@ -17,7 +17,6 @@ import {
   getStoredUser, 
   getStoredToken, 
   isAuthenticated,
-  // OAuth nonce generator
   generateOAuthNonce
 } from '@rationalbloks/frontblok-auth';
 import { initApi, getApi } from '@rationalbloks/frontblok-crud';
