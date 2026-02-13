@@ -8,8 +8,12 @@
 # Usage: python3 deploy.py
 # ============================================================================
 
+import os
 import subprocess
 import sys
+
+# Non-interactive SSH sessions don't source .bashrc — ensure uv is findable
+os.environ["PATH"] = "/root/.local/bin:" + os.environ.get("PATH", "")
 
 try:
     # Upgrade frontblok-deploy to latest (uv MUST be installed on VPS)
