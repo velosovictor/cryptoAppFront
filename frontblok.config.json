@@ -7,8 +7,7 @@
         "VITE_GOOGLE_CLIENT_ID"
     ],
     "required_vars": [
-        "VITE_DATABASE_API_URL",
-        "VITE_GOOGLE_CLIENT_ID"
+        "VITE_DATABASE_API_URL"
     ],
     "csp_sources": {
         "script_src": "https://accounts.google.com https://apis.google.com https://cdn.jsdelivr.net",
